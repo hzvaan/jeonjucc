@@ -1,1 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미래문화도시 전주 - 미니멀 컬러 에디토리얼</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --color-pink: #EE93AD;
+            --color-orange: #ED762B;
+            --color-red: #E50012;
+            --color-black: #1A1A1A;
+            --color-bg: #F8F8F8;
+            /* 전주 키비주얼 커서 이미지 */
+            --cursor-img: url('https://raw.githubusercontent.com/hzvaan/palbok/0eef32786085ec89f5541d941afd790f9b81acb5/cursor.png');
+        }
+        
+        body {
+            font-family: "Pretendard Variable", sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-black);
+            overflow-x: hidden;
+            word-break: keep-all;
+            cursor: auto !important; /* 기본 영역에서는 시스템 커서 강제 */
+        }
 
+        /* 배경 가이드 라인 디자인 */
+        .line-v { width: 1px; background: rgba(26, 26, 26, 0.05); height: 100vh; position: fixed; top: 0; z-index: -1; }
+        .line-h { height: 1px; background: var(--color-black); width: 100%; opacity: 0.1; }
+
+        /* 타이포그래피 설정 */
+        .hero-text {
+            font-size: clamp(2.5rem, 8vw, 8rem);
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            font-weight: 900;
+        }
+
+        /* 버튼 및 커스텀 커서 모션 핵심 로직 */
+        .btn-custom {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 이 설정이 커서가 버튼 밖으로 나가는 것을 잘라줍니다 */
+            cursor: none !important; /* 버튼 내부에서만 시스템 커서 숨김 */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .custom-cursor-inner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background-image: var(--cursor-img);
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 10;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            will-change: left, top;
+            left: -100px;
+            top: -100px;
+        }
+
+        /* 호버 시 커서 나타남 */
+        .btn-custom:hover .custom-cursor-inner {
+            opacity: 1;
+        }
+
+        .btn-text {
+            position: relative;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        /* 버튼 부유 애니메이션 */
+        @keyframes floatBtn {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-5px); }
+        }
+
+        .btn-custom:hover {
+            animation: floatBtn 0.8s ease-in-out infinite alternate;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* 포인트 컬러 설정 */
+        .text-point-red { color: var(--color-red); }
+        .bg-point-pink { background-color: var(--color-pink); }
+        .bg-point-orange { background-color: var(--color-orange); }
+        .bg-point-red { background-color: var(--color-red); }
+
+        .minimal-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <!-- 에디토리얼 가이드 라인 -->
+    <div class="line-v" style="left: 10%;"></div>
+    <div class="line-v" style="left: 30%;"></div>
+    <div class="line-v" style="left: 50%;"></div>
+    <div class="line-v" style="left: 70%;"></div>
+    <div class="line-v" style="left: 90%;"></div>
+
+    <!-- 네비게이션 헤더 -->
+    <header class="fixed top-0 w-full z-50 px-6 py-10 md:px-12">
+        <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-black flex items-center justify-center">
+                    <div class="w-4 h-4 bg-white rounded-full"></div>
+                </div>
+                <span class="font-black text-xl tracking-tighter uppercase">미래문화도시 전주</span>
+            </div>
+            <nav class="hidden lg:flex gap-12 font-bold text-[11px] tracking-widest uppercase opacity-50">
+                <a href="#" class="hover:text-point-red transition-colors">Philosophy</a>
+                <a href="#" class="hover:text-point-orange transition-colors">Projects</a>
+                <a href="#" class="hover:text-point-pink transition-colors">Archive</a>
+                <a href="#" class="hover:opacity-100">Connect</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 히어로 섹션 -->
+        <section class="pt-56 pb-24 px-6 md:px-12">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                    <div class="lg:col-span-8">
+                        <div class="flex gap-2 mb-10">
+                            <span class="minimal-dot bg-point-red"></span>
+                            <span class="minimal-dot bg-point-orange"></span>
+                            <span class="minimal-dot bg-point-pink"></span>
+                        </div>
+                        <h2 class="hero-text uppercase">
+                            The Most<br>
+                            <span class="text-point-red italic">Korean</span><br>
+                            Future.
+                        </h2>
+                    </div>
+                    <div class="lg:col-span-4 flex flex-col justify-end">
+                        <div class="border-l-2 border-black pl-8 py-2 mb-16">
+                            <h3 class="text-2xl font-black leading-tight">가장 한국적인<br>미래문화도시, 전주</h3>
+                            <p class="text-sm font-medium mt-6 opacity-60 leading-relaxed">
+                                전주문화재단은 전통문화의 현대적 재해석을 통해<br>대한민국의 새로운 문화예술을 선도합니다.
+                            </p>
+                        </div>
+                        <div class="flex gap-4">
+                            <!-- 쫀득한 커서가 적용된 버튼 -->
+                            <button class="btn-custom w-14 h-14 rounded-full border border-black hover:bg-black hover:text-white" onmouseenter="initBtnCursor(this)" onmouseleave="hideBtnCursor(this)">
+                                <span class="btn-text">↓</span>
+                                <div class="custom-cursor-inner"></div>
+                            </button>
+                            <button class="btn-custom px-10 h-14 rounded-full bg-black text-white text-[11px] font-bold tracking-[0.2em] uppercase" onmouseenter="initBtnCursor(this)" onmouseleave="hideBtnCursor(this)">
+                                <span class="btn-text">View Projects</span>
+                                <div class="custom-cursor-inner"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 핵심 가치 컬러 섹션 -->
+        <section class="py-12 px-2">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div class="btn-custom bg-point-pink p-12 min-h-[450px] flex flex-col justify-between group" onmouseenter="initBtnCursor(this)" onmouseleave="hideBtnCursor(this)">
+                    <div class="custom-cursor-inner" style="width: 60px; height: 60px;"></div>
+                    <span class="btn-text text-xs font-black border border-current px-4 py-1.5 rounded-full w-fit">01. ART</span>
+                    <div class="btn-text">
+                        <h4 class="text-4xl font-black mb-6 leading-none tracking-tighter">전통 X 기술<br>융합 생태계</h4>
+                        <p class="text-sm font-medium opacity-80">Tech-heritage 사업 구조화</p>
+                    </div>
+                </div>
+                <div class="btn-custom bg-point-orange p-12 min-h-[450px] flex flex-col justify-between group" onmouseenter="initBtnCursor(this)" onmouseleave="hideBtnCursor(this)">
+                    <div class="custom-cursor-inner" style="width: 60px; height: 60px;"></div>
+                    <span class="btn-text text-xs font-black border border-current px-4 py-1.5 rounded-full w-fit">02. TECH</span>
+                    <div class="btn-text">
+                        <h4 class="text-4xl font-black mb-6 leading-none tracking-tighter">K-퓨처<br>콘텐츠 개발</h4>
+                        <p class="text-sm font-medium opacity-80">기술과 예술의 창조적 융합</p>
+                    </div>
+                </div>
+                <div class="btn-custom bg-point-red p-12 min-h-[450px] flex flex-col justify-between text-white group" onmouseenter="initBtnCursor(this)" onmouseleave="hideBtnCursor(this)">
+                    <div class="custom-cursor-inner" style="width: 60px; height: 60px;"></div>
+                    <span class="btn-text text-xs font-black border border-white px-4 py-1.5 rounded-full w-fit">03. HUMAN</span>
+                    <div class="btn-text">
+                        <h4 class="text-4xl font-black mb-6 leading-none tracking-tighter">참여형<br>창작 플랫폼</h4>
+                        <p class="text-sm font-medium opacity-80">시민과 창작자가 함께 만드는 문화</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-24 px-6 md:px-12 bg-white text-center">
+        <div class="max-w-screen-2xl mx-auto flex flex-col items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-point-red"></div>
+                <span class="font-black text-2xl tracking-tighter uppercase">Future Culture Jeonju</span>
+            </div>
+            <p class="text-[9px] font-black opacity-20 tracking-[0.4em] uppercase">© 2026 JEONJU CULTURAL FOUNDATION. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        let mouseX = 0, mouseY = 0; // 마우스 실제 좌표
+        let cursorX = 0, cursorY = 0; // 커서 이미지 추적 좌표
+        let currentBtn = null;
+        let animationFrame = null;
+        const easeAmount = 0.25; // 쫀득한 베지어 효과 값 (0.1~0.3 권장)
+
+        // 부드러운 이동 루프
+        function updatePosition() {
+            if (!currentBtn) return;
+            const cursor = currentBtn.querySelector('.custom-cursor-inner');
+            if (!cursor) return;
+            
+            // Lerp 기법을 활용한 부드러운 추적
+            cursorX += (mouseX - cursorX) * easeAmount;
+            cursorY += (mouseY - cursorY) * easeAmount;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+
+            animationFrame = requestAnimationFrame(updatePosition);
+        }
+
+        // 버튼 진입 시 초기화
+        function initBtnCursor(btn) {
+            currentBtn = btn;
+            const rect = btn.getBoundingClientRect();
+            
+            // 진입 순간의 위치 초기화 (좌표 꼬임 방지)
+            cursorX = mouseX; 
+            cursorY = mouseY;
+            
+            btn.addEventListener('mousemove', handleMove);
+            if (animationFrame) cancelAnimationFrame(animationFrame);
+            animationFrame = requestAnimationFrame(updatePosition);
+        }
+
+        // 마우스 이동 감지
+        function handleMove(e) {
+            if (!currentBtn) return;
+            const rect = currentBtn.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+        }
+
+        // 버튼 이탈 시 정리 및 시스템 커서 복구
+        function hideBtnCursor(btn) {
+            const cursor = btn.querySelector('.custom-cursor-inner');
+            if (cursor) {
+                cursor.style.opacity = '0';
+            }
+            
+            btn.removeEventListener('mousemove', handleMove);
+            currentBtn = null;
+            if (animationFrame) cancelAnimationFrame(animationFrame);
+            
+            // 좌표를 화면 밖으로 밀어냄
+            mouseX = mouseY = cursorX = cursorY = -150;
+        }
+    </script>
+</body>
+</html>
